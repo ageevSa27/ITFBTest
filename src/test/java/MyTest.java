@@ -1,19 +1,23 @@
 
-import io.qameta.allure.Feature;
-import io.qameta.allure.Owner;
+import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import ru.ageev.pages.DemoqaPage;
 
-public class MyTest extends TestConf{
+
+
+@ExtendWith(MyTestWatcher.class)
+public class MyTest extends BaseTest{
 
     @Test
     @Feature("UITest")
     @Owner("Ageev")
     @Tag("All")
-    @DisplayName("UIтест")
+    @DisplayName("ITFBTest")
     public void demoqaTest(){
+
         DemoqaPage demoqaPage = new DemoqaPage(driver);
         demoqaPage
                 .clickOnElements()
@@ -24,7 +28,4 @@ public class MyTest extends TestConf{
                 .clickNewWindow()
                 .clickAlertbtns();
     }
-
-
-
 }

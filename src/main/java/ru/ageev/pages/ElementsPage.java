@@ -1,18 +1,20 @@
 package ru.ageev.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
-public class ElementsPage {
-    protected WebDriver driver;
+public class ElementsPage extends BasePage {
+
+    public ElementsPage(WebDriver driver) {
+        super(driver);
+    }
 
     By textBox = By.xpath("//span[text() = 'Text Box']");
-    public ElementsPage(WebDriver driver) {
-        this.driver = driver;
-    }
-    public TextBoxPage clickOnTextBox(){
-        driver.findElement(textBox).click();
+
+    @Step("Нажать на «Text box»")
+    public TextBoxPage clickOnTextBox() {
+        waitElementIsVisible(textBox).click();
         return new TextBoxPage(driver);
     }
 

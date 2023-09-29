@@ -1,18 +1,15 @@
 package ru.ageev.pages;
 
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
+public class ButtonPage extends BasePage {
 
-public class ButtonPage {
-    WebDriver driver;
     public ButtonPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     By clicMeBy = By.xpath("//button[text() = 'Click Me']");
@@ -24,7 +21,7 @@ public class ButtonPage {
     By alertBtn = By.xpath("//div[text() = 'Alerts, Frame & Windows']");
     By browserWindowBtn = By.xpath("//li[.//span[text() = 'Browser Windows']]");
 
-
+    @Step("Нажать на кнопку «Click me», «Right Click me», «Double Click me»")
     public BrowserWindowsPage clickOnBtns() {
 
         driver.findElement(clicMeBy).click();
@@ -45,10 +42,7 @@ public class ButtonPage {
                 .scrollToElement(driver.findElement(By.xpath("//div[text() = 'Interactions']")))
                 .perform();
         driver.findElement(alertBtn).click();
-//        wait.until(ExpectedConditions.elementToBeClickable(browserWindowBtn)).click();
         driver.findElement(browserWindowBtn).click();
-
-
         return new BrowserWindowsPage(driver);
     }
 }
